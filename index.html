@@ -3,17 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>사주 · 점성술 통합 리딩</title>
+    <title>사주 · 점성술 통합 분석</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="container">
-      <h1>사주 · 점성술 통합 리딩</h1>
+      <h1>사주 · 점성술 통합 분석</h1>
       <p class="lead">
-        이름, 생년월일, 태어난 시, 성별을 입력하면 사주/점성술 통합 분석 요청문을 자동으로 만들어요.
-        입력한 개인정보는 브라우저 안에서만 사용되고 저장하지 않습니다.
+        이름, 생년월일, 태어난 시, 성별을 입력하면 실제 분석 결과를 바로 받아볼 수 있어요.
+        개인정보는 분석 응답 생성 용도로만 사용하며 별도 저장하지 않습니다.
       </p>
-      <p class="lead">배포 주소 예시: <a href="https://gayeon-semicolon.github.io/project-1_saja/" target="_blank" rel="noreferrer">gayeon-semicolon.github.io/project-1_saja/</a></p>
 
       <form id="fortune-form" class="card">
         <div class="grid">
@@ -41,24 +40,14 @@
         </label>
 
         <div class="actions">
-          <button type="submit">분석 프롬프트 만들기</button>
-          <button type="button" id="copy-btn">프롬프트 복사</button>
+          <button type="submit" id="analyze-btn">분석 시작</button>
           <button type="button" id="clear-btn">초기화</button>
         </div>
       </form>
 
       <section class="card">
-        <h2>생성된 분석 프롬프트</h2>
-        <pre id="prompt-output">아직 생성되지 않았습니다.</pre>
-      </section>
-
-      <section class="card notice">
-        <h3>사용 방법</h3>
-        <ol>
-          <li>폼 입력 후 <strong>분석 프롬프트 만들기</strong>를 누르세요.</li>
-          <li>복사한 프롬프트를 원하는 AI(예: ChatGPT)에 붙여넣어 분석을 받으세요.</li>
-          <li>개인정보는 서버에 저장하지 않으며, 새로고침하면 사라집니다.</li>
-        </ol>
+        <h2>분석 결과</h2>
+        <pre id="result-output">아직 분석되지 않았습니다.</pre>
       </section>
     </main>
 
