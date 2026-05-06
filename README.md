@@ -59,3 +59,24 @@ python3 -m http.server 8000
 - 이 프로젝트는 서버 API 호출 없이 동작하는 정적 웹사이트입니다.
 - 사용자가 입력한 이름/생년월일/출생시각/성별 데이터는 브라우저 세션에서만 처리됩니다.
 - 페이지 새로고침 시 데이터는 사라집니다.
+
+
+### Vercel 404 (NOT_FOUND) 해결
+Vercel에서 아래 오류가 나면 보통 프로젝트 루트/출력 경로 또는 라우팅 설정 문제입니다.
+
+`404: NOT_FOUND`
+
+체크 순서:
+1. Vercel Project Settings > **General**
+   - Root Directory: 저장소 루트(`project-1_saja`)로 설정
+2. Vercel Project Settings > **Build & Output Settings**
+   - Framework Preset: `Other`
+   - Build Command: 비움
+   - Output Directory: 비움 또는 `.`
+3. 이 저장소의 `vercel.json`이 배포에 포함됐는지 확인
+   - 현재 모든 경로를 `index.html`로 rewrite 하도록 설정됨
+4. **Redeploy** (기존 배포 재시도 말고 새 배포 권장)
+
+그래도 안 되면:
+- Vercel 대시보드의 배포 로그에서 `index.html` 업로드 여부 확인
+- 잘못된 Root Directory로 인해 다른 폴더가 배포되는지 확인
