@@ -25,16 +25,16 @@ python3 -m http.server 8000
 
 ### 2) 자동 배포
 - `main` 브랜치에 push하면 `.github/workflows/deploy-pages.yml`로 자동 배포
-- 배포 URL은 `https://<github-username>.github.io/<repo-name>/`
+- 배포 URL은 `https://gayeon-semicolon.github.io/project-1_saja/`
 
 ### 3) 커스텀 도메인 연결 (선택)
 이 저장소는 `CNAME`을 고정 파일로 두지 않고, **Repository Variable**로 관리합니다.
 
 1. GitHub 저장소 `Settings > Secrets and variables > Actions > Variables` 이동
-2. `CUSTOM_DOMAIN` 변수 추가 (예: `fortune.mybrand.com`)
+2. `CUSTOM_DOMAIN` 변수 추가 (예: `saju.yourdomain.com`)
 3. DNS에 CNAME 레코드 추가
    - 이름: `fortune`
-   - 값: `<github-username>.github.io`
+   - 값: `gayeon-semicolon.github.io`
 4. 재배포하면 워크플로가 `CNAME` 파일을 자동 생성
 5. `Settings > Pages`에서 `Enforce HTTPS` 체크
 
