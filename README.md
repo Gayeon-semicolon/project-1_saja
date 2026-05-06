@@ -16,22 +16,40 @@ python3 -m http.server 8000
 
 ---
 
-## 배포 방법
+## 실제 배포 (GitHub Pages 권장)
 
-### 1) GitHub Pages (추천)
+### 1) 저장소 준비
 1. 이 저장소를 GitHub에 push
 2. 기본 브랜치를 `main`으로 설정
 3. 저장소 `Settings > Pages`에서 Source를 **GitHub Actions**로 선택
-4. `main` 브랜치에 push하면 `.github/workflows/deploy-pages.yml`로 자동 배포
 
-### 2) Vercel
+### 2) 자동 배포
+- `main` 브랜치에 push하면 `.github/workflows/deploy-pages.yml`로 자동 배포
+- 배포 URL은 `https://<github-username>.github.io/<repo-name>/`
+
+### 3) 커스텀 도메인 연결 (선택)
+이 저장소는 `CNAME`을 고정 파일로 두지 않고, **Repository Variable**로 관리합니다.
+
+1. GitHub 저장소 `Settings > Secrets and variables > Actions > Variables` 이동
+2. `CUSTOM_DOMAIN` 변수 추가 (예: `fortune.mybrand.com`)
+3. DNS에 CNAME 레코드 추가
+   - 이름: `fortune`
+   - 값: `<github-username>.github.io`
+4. 재배포하면 워크플로가 `CNAME` 파일을 자동 생성
+5. `Settings > Pages`에서 `Enforce HTTPS` 체크
+
+참고: `CNAME.example`은 예시 파일입니다.
+
+---
+
+## Vercel 배포
 1. GitHub 저장소를 Vercel에 Import
 2. Framework Preset: `Other`
 3. Build Command: 비움
 4. Output Directory: `.`
 5. Deploy
 
-### 3) Netlify
+## Netlify 배포
 1. GitHub 저장소를 Netlify에 연결
 2. Build Command: 비움
 3. Publish directory: `.`
@@ -41,31 +59,3 @@ python3 -m http.server 8000
 - 이 프로젝트는 서버 API 호출 없이 동작하는 정적 웹사이트입니다.
 - 사용자가 입력한 이름/생년월일/출생시각/성별 데이터는 브라우저 세션에서만 처리됩니다.
 - 페이지 새로고침 시 데이터는 사라집니다.
-
-
-## 커스텀 도메인 연결
-예시 도메인: `saju.example.com` (현재 `CNAME` 파일과 동일)  
-실제 배포 시에는 본인 도메인으로 `CNAME` 파일 값을 반드시 변경하세요.
-
-### A) GitHub Pages 도메인 연결
-1. 저장소 루트의 `CNAME` 파일 값을 원하는 도메인으로 변경 (예: `fortune.mybrand.com`)
-2. DNS 제공업체에서 아래 레코드 추가
-   - `subdomain` 방식 권장(CNAME):
-     - 이름: `fortune`
-     - 값: `<github-username>.github.io`
-3. GitHub 저장소 `Settings > Pages`에서 Custom domain에 같은 도메인 입력
-4. `Enforce HTTPS` 활성화
-
-### B) Vercel 도메인 연결
-1. Vercel 프로젝트 > `Settings > Domains`
-2. 도메인 추가 후 안내되는 DNS 레코드(CNAME 또는 A) 적용
-3. SSL(HTTPS) 자동 발급 확인
-
-### C) Netlify 도메인 연결
-1. Netlify 사이트 > `Domain settings`
-2. Custom domain 추가
-3. DNS 레코드(보통 CNAME) 적용 후 TLS 인증서 발급 확인
-
-### DNS 전파 체크
-- 일반적으로 수 분~24시간 소요
-- `dig`, `nslookup`, 또는 DNS checker 사이트로 확인

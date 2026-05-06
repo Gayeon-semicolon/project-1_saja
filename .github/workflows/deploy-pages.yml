@@ -24,6 +24,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Configure custom domain (optional)
+        if: ${{ vars.CUSTOM_DOMAIN != '' }}
+        run: |
+          echo "${{ vars.CUSTOM_DOMAIN }}" > CNAME
+          echo "Using custom domain: ${{ vars.CUSTOM_DOMAIN }}"
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
